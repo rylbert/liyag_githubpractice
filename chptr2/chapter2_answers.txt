@@ -1,0 +1,109 @@
+#initializing a repository in an existing directory
+
+$ git init
+
+#adding file
+
+$ git add . /*if you want to add all file 
+$ git add nameoffile /* adding one file.
+$ git add nameofline.. nameofanotherfile /*adding multiple file
+
+#cloning repository
+
+$ git clone https://github.com/rylbert/liyag_githubpractice.git 
+$ git clone https://github.com/rylbert/liyag_githubpractice.git SciComPy 
+
+$checking status
+
+$ git status
+
+#tracking new files
+
+$ git add README
+$ git status
+
+#staging modified files
+
+$ git status
+$ git add contributing.md
+$ git status
+$ vim contributing.md
+$ git status
+$ git add contributing.md
+$ git status
+
+$short status
+
+$ git status -s
+
+#ignoring files
+
+$ cat .gitignore
+
+#viewing staged and unstaged changes
+
+$ git status
+$ git diff
+$ git diiff --staged
+$ git add contributing.md
+$ echo 'test line' >> contributing.md
+$ git status
+
+#use git diff to see what is still unstaged
+
+$git diff
+
+#add git diff --cached to see what you've staged so far
+
+$ git diff --cached
+
+#commiting you changes
+
+$ git commit
+
+#adding commit message
+
+$ git commit -m "my message"
+
+#skipping the staging area
+
+$ git status
+$ git commit -a -m "my message"
+
+#removing files
+
+$ rm project.md
+
+#staging the file's removal
+
+$ git rm project.md
+$ git status
+
+#keeping your file in working tree but remove int from your stagina area
+
+$ git rm --cached readme
+
+#passing files, directory and file-glob patterns to git rm command
+
+$ git rm log/\*.log
+$ git rm \*~ (remove all files that have the .log ext)
+
+#moving files
+
+$ git mv file_from file_to (renaming file)
+
+$ git mv readme.md readme
+$ git status (check status)
+
+#viewing commit history
+
+$ git log
+$ git log -p -2 (limits output to only the last two entries)
+$ git log --stat (abbreviation stats for each commit us --stat)
+$ git log --pretty=oneline (same format but with less or more info)
+$ git log --pretty=format: "%h - %an, %ar : %s" (explicit format)
+$ git log --pretty=format: "%h %s" --graph (adds ASCII graph showing your branch and merge history)
+
+#limiting log output
+
+$ git log --since=2.weeks (list of commits made in the last two weeks)
