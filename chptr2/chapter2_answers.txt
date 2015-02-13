@@ -16,11 +16,24 @@ $ git clone https://github.com/rylbert/liyag_githubpractice.git SciComPy
 $checking status
 
 $ git status
+On branch master nothing to commit, working directory clean
+
+$ echo 'My Project' > README
+$ git status
+On branch master 
+Untracked files:  
+(use "git add <file>..." to include in what will be committed)
+    README
+nothing added to commit but untracked files present (use "git add" to track)
 
 #tracking new files
 
 $ git add README
 $ git status
+On branch master 
+Changes to be committed:  
+(use "git reset HEAD <file>..." to unstage)
+    new file:   READM
 
 #staging modified files
 
