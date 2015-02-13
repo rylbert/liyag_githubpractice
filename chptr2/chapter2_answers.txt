@@ -107,3 +107,19 @@ $ git log --pretty=format: "%h %s" --graph (adds ASCII graph showing your branch
 #limiting log output
 
 $ git log --since=2.weeks (list of commits made in the last two weeks)
+$ git log -Sfunction_name (last commit that added or removed a reference to a specific function)
+$ git log --pretty="%h - %s" --author=gitster --since="2008-10-01" \
+
+#undoing things
+
+$ git commit --amend
+$ git commit -m 'initial commit' (if you add then realize you forgot to stage the changes)
+$ git add forgotten_file
+$ git commit --amend
+
+#unstaging a stage file
+
+$ git add .
+$ git status
+$ git reset HEAD contributing.md
+$ git status
