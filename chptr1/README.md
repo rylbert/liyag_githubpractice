@@ -1,0 +1,3 @@
+#CHAPTER1 
+
+This chapter as indicated in the introduction will the about the basic of Git. It will explain on its background as well as the version control. What is version control? In layman's term, It is tagging your progress nor changes in some project. You will also learn on how to run Git on your own system and eventually working on it. At the end of this chapter you will be familiar with its environment and you will be ready to go
