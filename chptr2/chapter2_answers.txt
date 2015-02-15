@@ -1,16 +1,15 @@
-Commands
+#Initializing git repository in an Existing Directory
 
-//Initializing git
 $ git init
-Initialized empty Git repository in
-c:/Users/rylbert/Documents/py/liyag_githubpractice/.git/
 
-//Adding existing files
+#Adding existing files
+
 git add *.c
 git add LICENSE
 git commit -m 'initial project version'
 
-//Cloning a repository
+#Cloning an existing repository
+
 $ git clone https://github.com/libgit2/libgit2
 Cloning into 'libgit2'...
 remote: Counting objects: 57941, done.
@@ -21,17 +20,15 @@ Resolving deltas: 100% (39920/39920), done.
 Checking connectivity... done.
 Checking out files: 100% (3252/3252), done.
 
-//Check status of files
+#if you want to specify the name of your directory other than "libgit2"
+
+$ git clone https://github.com/libgit2/libgit2 mylibgit
+
+
+#Check status of your files
 $ git status
-Your branch is up-to-date with 'origin/master'.
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	modified:   chapter2_answers.txt
-
-no changes added to commit (use "git add" and/or "git commit -a")
+On branch master 
+nothing to commit, working directory clean.
 
 echo 'My Project' > README
 $ git status
@@ -43,8 +40,10 @@ Untracked files:
 
 nothing added to commit but untracked files present (use "git add" to track)
 
-git add README
-git status
+#Tracking New Files
+
+$ git add README
+$ git status
 On branch master
 Your branch is up-to-date with 'origin/master'.
 
@@ -53,8 +52,9 @@ Changes to be committed:
 
 	new file:   README
 
-//Staging modified files
-git status
+#Staging modified files
+
+$ git status
 On branch master
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
@@ -67,8 +67,8 @@ Changes not staged for commit:
 
     modified:   CONTRIBUTING.md
 
-git add CONTRIBUTING.md
-git status
+$ git add CONTRIBUTING.md
+$ git status
 On branch master
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
@@ -100,7 +100,7 @@ Changes to be committed:
     new file:   README
     modified:   CONTRIBUTING.md
 
-//Short version of status command
+#Short Status
 git status -s
  M README
 MM Rakefile
@@ -108,12 +108,13 @@ A  lib/git.rb
 M  lib/simplegit.rb
 ?? LICENSE.txt
 
-Ignoring files:
+#Ignoring files
+
 cat .gitignore
 *.[oa]
 *~
 
-//Viewing staged and unstaged changes
+#Viewing yout staged and unstaged changes
 git status
 On branch master
 Changes to be committed:
@@ -121,7 +122,7 @@ Changes to be committed:
 
     new file:   README
 
-//Changes not staged for commit
+Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
@@ -194,9 +195,9 @@ index 8ebb991..643e24f 100644
  If you are starting to work on a particular area, feel free to submit a PR
  that highlights your work in progress (and note in the PR title that it's
 
-Committing changes:
- git commit
- # Please enter the commit message for your changes. Lines starting
+#Committing your changes
+$ git commit
+# Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
 # On branch master
 # Your branch is up-to-date with 'origin/master'.
@@ -211,7 +212,7 @@ git commit -m "Story 182: Fix benchmarks for speed"
  2 files changed, 2 insertions(+)
  create mode 100644 README
 
-Skipping the Staging area:
+#Skipping the Staging area
 git status
 On branch master
 Changes not staged for commit:
@@ -225,9 +226,9 @@ git commit -a -m 'added new benchmarks'
 [master 83e38c7] added new benchmarks
  1 file changed, 5 insertions(+), 0 deletions(-)
 
-//Removing files
-rm PROJECTS.md
-git status
+#Removing files
+$ rm PROJECTS.md
+$ git status
 On branch master
 Your branch is up-to-date with 'origin/master'.
 Changes not staged for commit:
@@ -238,36 +239,42 @@ Changes not staged for commit:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 
-git rm PROJECTS.md
-rm 'PROJECTS.md'
-git status
+#if you run git rm, it stages the file's removal
+
+$ git rm PROJECTS.md
+$ rm 'PROJECTS.md'
+$ git status
 On branch master
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 
     deleted:    PROJECTS.md
 
-git rm --cached README
-git rm log/\*.log
-git rm \*~
-git mv file_from file_to
-git mv README.md README
-git status
+$ git rm --cached README
+$ git rm log/\*.log
+$ git rm \*~
+
+#Moving files
+
+$ git mv file_from file_to
+$git mv README.md README
+$git status
 On branch master
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 
     renamed:    README.md -> README
 
-Viewing the Commit History:
-git clone https://github.com/schacon/simplegit-progit
+#Viewing the Commit History
+
+$ git clone https://github.com/schacon/simplegit-progit
 Cloning into 'simplegit-progit'...
 remote: Counting objects: 13, done.
 remote: Total 13 (delta 0), reused 0 (delta 0)
 Unpacking objects: 100% (13/13), done.
 Checking connectivity... done.
 
-git log
+$ git log
 commit ca82a6dff817ec66f44342007202690a93763949
 Author: Scott Chacon <schacon@gee-mail.com>
 Date:   Mon Mar 17 21:52:11 2008 -0700
@@ -286,7 +293,7 @@ Date:   Sat Mar 15 10:31:28 2008 -0700
 
     first commit
 
-git log -p -2
+$ git log -p -2
 commit ca82a6dff817ec66f44342007202690a93763949
 Author: Scott Chacon <schacon@gee-mail.com>
 Date:   Mon Mar 17 21:52:11 2008 -0700
@@ -313,7 +320,7 @@ Date:   Sat Mar 15 16:40:33 2008 -0700
 
     removed unnecessary test
 
-diff --git a/lib/simplegit.rb b/lib/simplegit.rb
+$ diff --git a/lib/simplegit.rb b/lib/simplegit.rb
 index a0a60ae..47c6340 100644
 --- a/lib/simplegit.rb
 +++ b/lib/simplegit.rb
@@ -328,7 +335,7 @@ index a0a60ae..47c6340 100644
 -end
 \ No newline at end of file
 
-git log --stat
+$ git log --stat
 commit ca82a6dff817ec66f44342007202690a93763949
 Author: Scott Chacon <schacon@gee-mail.com>
 Date:   Mon Mar 17 21:52:11 2008 -0700
@@ -358,17 +365,17 @@ Date:   Sat Mar 15 10:31:28 2008 -0700
  lib/simplegit.rb | 25 +++++++++++++++++++++++++
  3 files changed, 54 insertions(+)
 
-git log --pretty=oneline
+$ git log --pretty=oneline
 ca82a6dff817ec66f44342007202690a93763949 changed the version number
 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7 removed unnecessary test
 a11bef06a3f659402fe7563abf99ad00de2209e6 first commit
 
-git log --pretty=format:"%h - %an, %ar : %s"
+$ git log --pretty=format:"%h - %an, %ar : %s"
 ca82a6d - Scott Chacon, 6 years ago : changed the version number
 085bb3b - Scott Chacon, 6 years ago : removed unnecessary test
 a11bef0 - Scott Chacon, 6 years ago : first commit
 
-git log --pretty=format:"%h %s" --graph
+$ git log --pretty=format:"%h %s" --graph
 * 2d3acf9 ignore errors from SIGCHLD on trap
 *  5e3ee11 Merge branch 'master' of git://github.com/dustin/grit
 |\
@@ -380,16 +387,19 @@ git log --pretty=format:"%h %s" --graph
 * d6016bc require time for xmlschema
 *  11d191e Merge branch 'defunkt' into local
 
-//Limiting Log Output
-git log --since=2.weeks
-git log -Sfunction_name
+#Limiting Log Output
 
-//Undoing Things
-git commit --amend
+$ git log --since=2.weeks
+$ git log -Sfunction_name
+ 
+#Undoing Things
 
-//Unstaging a Staged File
-git add .
-git status
+$ git commit --amend
+
+#Unstaging a Staged File
+
+$ git add .
+$ git status
 On branch master
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
@@ -397,7 +407,7 @@ Changes to be committed:
     renamed:    README.md -> README
     modified:   CONTRIBUTING.md
 
-git reset HEAD CONTRIBUTING.md
+$ git reset HEAD CONTRIBUTING.md
 Unstaged changes after reset:
 M	CONTRIBUTING.md
 git status
@@ -413,7 +423,8 @@ Changes not staged for commit:
 
     modified:   CONTRIBUTING.md
 
-//Unmodifying a modified file
+#Unmodifying a modified file
+
 git checkout -- CONTRIBUTING.md
 git status
 On branch master
@@ -422,7 +433,8 @@ Changes to be committed:
 
     renamed:    README.md -> README
 
-//Showing remotes
+#Showing remotes
+
 git clone https://github.com/schacon/ticgit
 Cloning into 'ticgit'...
 remote: Counting objects: 1857, done.
@@ -451,7 +463,8 @@ koke      git://github.com/koke/grit.git (push)
 origin    git@github.com:mojombo/grit.git (fetch)
 origin    git@github.com:mojombo/grit.git (push)
 
-//Adding Remote repositories
+#Adding Remote repositories
+
 git remote
 origin
 git remote add pb https://github.com/paulboone/ticgit
@@ -470,14 +483,17 @@ From https://github.com/paulboone/ticgit
  * [new branch]      master     -> pb/master
  * [new branch]      ticgit     -> pb/ticgit
 
-Fetching and Pulling from your remotes
+#Fetching and Pulling from your remotes
+
 git fetch origin
 
-Pushing to a remote:
-git push origin master
+#Pushing to a remote
 
-Inspecting a remote:
-git remote show origin
+$ git push origin master
+
+#Inspecting a remote 
+
+$ git remote show origin
 * remote origin
   Fetch URL: https://github.com/schacon/ticgit
   Push  URL: https://github.com/schacon/ticgit
@@ -511,7 +527,8 @@ git remote show origin
     markdown-strip                 pushes to markdown-strip                 (up to date)
     master                         pushes to master                         (up to date)
 
-//Removing and renaming remotes
+#Removing and renaming remotes
+
 git remote rename pb paul
 git remote
 origin
@@ -521,7 +538,8 @@ git remote rm paul
 git remote
 origin
 
-Listing tags//
+#Listing tags
+
 git tag
 v0.1
 v1.3
@@ -538,7 +556,8 @@ v1.8.5.3
 v1.8.5.4
 v1.8.5.5
 
-//Creating annotated tags
+#Creating annotated tags
+
 git tag -a v1.4 -m 'my version 1.4'
 git tag
 v0.1
@@ -558,7 +577,8 @@ Date:   Mon Mar 17 21:52:11 2008 -0700
 
     changed the version number
 
-Creating lightweight tags:
+#Creating lightweight tags
+
 git tag v1.4-lw
 git tag
 v0.1
@@ -574,7 +594,8 @@ Date:   Mon Mar 17 21:52:11 2008 -0700
 
     changed the version number
 
-//Tagging later
+#Tagging later
+
 git log --pretty=oneline
 15027957951b64cf874c3557a0f3547bd83b3ff6 Merge branch 'experiment'
 a6b4c97498bd301d84096da251c98a07c7723e65 beginning write support
@@ -610,7 +631,8 @@ Date:   Sun Apr 27 20:43:35 2008 -0700
     updated rakefile
 ...
 
-Sharing tags:
+$sharing tags
+
 git push origin v1.5
 Counting objects: 14, done.
 Delta compression using up to 8 threads.
@@ -628,11 +650,13 @@ To git@github.com:schacon/simplegit.git
  * [new tag]         v1.4 -> v1.4
  * [new tag]         v1.4-lw -> v1.4-lw
 
-Checking out tags:
+#Checking out tags
+
 git checkout -b version2 v2.0.0
 Switched to a new branch 'version2'
 
-Creating an alias:
+#Creating an alias
+
 git config --global alias.co checkout
 git config --global alias.br branch
 git config --global alias.ci commit

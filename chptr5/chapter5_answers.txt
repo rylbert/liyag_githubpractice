@@ -1,0 +1,111 @@
+commands
+
+#contributing to a project
+#user john
+$ git clone john@githost:simplegit.git
+Initialized empty Git repository in /home/john/simplegit/.git/
+...
+$cd simplegit/
+$ vim lib/simplegit.rb
+$ git commit -am 'removed invalid default value'
+[master 738ee87] removed invalid default value
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+#user jessica
+$ git clone jessica@githost:simplegit.git 
+Initialized empty Git repository in /home/jessica/simplegit/.git/ ... 
+$ cd simplegit/ 
+$ vim TODO 
+$ git commit -am 'add reset task' [master fbff5bc] add reset task 1 files changed, 1 insertions(+), 0 deletions(-)
+
+#user john
+$ git push origin master
+To john@githost:simplegit.git
+ ! [rejected]        master -> master (non-fast forward)
+error: failed to push some refs to 'john@githost:simplegit.git'
+
+$ git fetch origin
+...
+From john@githost:simplegit
+ + 049d078...fbff5bc master     -> origin/master
+
+$ git merge origin/master
+Merge made by recursive.
+ TODO |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+$ git push origin master
+...
+To john@githost:simplegit.git
+   fbff5bc..72bbc59  master -> master
+
+#user jessica
+# Jessica's Machine 
+$ git fetch origin ... 
+From jessica@githost:simplegit   f
+bff5bc..72bbc59  master     -> origin/maste
+
+$ git log --no-merges issue54..origin/master
+commit 738ee872852dfaa9d6634e0dea7a324040193016
+Author: John Smith <jsmith@example.com>
+Date:   Fri May 29 16:01:27 2009 -0700
+
+   removed invalid default value
+
+$ git checkout master
+Switched to branch 'master'
+Your branch is behind 'origin/master' by 2 commits, and can be fast-forwarded.
+
+$ git merge issue54
+Updating fbff5bc..4af4298
+Fast forward
+ README           |    1 +
+ lib/simplegit.rb |    6 +++++-
+ 2 files changed, 6 insertions(+), 1 deletions(-)
+
+$ git merge origin/master
+Auto-merging lib/simplegit.rb
+Merge made by recursive.
+ lib/simplegit.rb |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+$ git push origin master
+...
+To jessica@githost:simplegit.git
+   72bbc59..8059c15  master -> master
+
+#private manage team
+# in this scenerio you'll look at the contributors role in larger group
+
+#user jessica machine 
+$ git checkout -b featureA Switched to a new branch 'featureA' 
+$ vim lib/simplegit.rb 
+$ git commit -am 'add limit to log function' [featureA 3300904] add limit to log function 1 files changed, 1 insertions(+), 1 deletions(-)
+
+#she pushes her work to with john
+$ git push -u origin featureA 
+... 
+To jessica@githost:simplegit.git 
+* [new branch]      featureA -> featureA
+
+
+#user jessica
+$ git fetch origin 
+$ git checkout -b featureB origin/master 
+Switched to a new branch 'featureB'
+
+#user jessica needs to commit to feature b
+$ vim lib/simplegit.rb 
+$ git commit -am 'made the ls-tree function recursive'
+[featureB e5b0fdc] made the ls-tree function recursive 
+1 files changed, 1 insertions(+), 1 deletions(-) 
+$ vim lib/simplegit.rb 
+$ git commit -am 'add ls-files' [featureB 8512791] add ls-files 
+1 files changed, 5 insertions(+), 0 deletions(-)
+
+#now she push up her work
+$ git fetch origin ... 
+From jessica@githost:simplegit * 
+[new branch]      featureBee -> origin/featureBee
+
+

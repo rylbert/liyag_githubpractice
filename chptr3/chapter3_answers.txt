@@ -1,0 +1,255 @@
+#Branching in a nulshell
+
+$ git add README test.rb LICENSE
+$ git commit -m 'initial commit of my project'
+
+#Creating a new branch
+
+$ git branch testing
+$ git log --oneline --decorate
+f30ab (HEAD, master, testing) add feature #32 - ability to add new
+34ac2 fixed bug #1328 - stack overflow under certain conditions
+98ca9 initial commit of my project
+
+#Switching branches
+
+$ git checkout testing
+M       chptr1/chapter1_answers.txt
+M       chptr2/chapter2_answers.txt
+D       chptr2/libgit2
+M       chptr3/readme.md
+D       liyag_ipythonexercise_part1/readme.md
+
+$ vim test.rb
+$ git commit -a -m 'made a change'
+
+$ git log --oneline --decorate --graph --all
+* 69d0fe7 (HEAD, origin/master, testing, master) edit some answers
+*   bf8335c Merge branch 'master' of https://github.com/rylbert/liyag_githubprac
+|\
+| * c993249 Delete chapter1_answers.md.txt
+* | 8b09e64 adding files chapter2
+|/
+* 9b31223 edit chap2 answers
+* a82e5ac add chap1
+* 000e06f edit chap2 answers
+* ccf646b chapter2 answers
+* efa4d3b edit chapter1_answers
+* 5093f17 edit readme.mmd
+* 594b3b1 add readme ipythonp1
+* 50fb524 add readme file chap6
+* 419770f add readmefile chap 5
+* 2607076 add readme file chptr4
+* 78a9cf2 add readme file chptr3
+* 3a4436f add readme file chptr2
+* d7947d0 add dir
+* f710b5f first commit
+* 7aca7f9 add readmefile on chptr1
+(END)
+
+#basic branching
+
+$ git checkout -b iss53
+M       chptr1/chapter1_answers.txt
+M       chptr2/chapter2_answers.txt
+D       chptr2/libgit2
+M       chptr3/readme.md
+D       liyag_ipythonexercise_part1/readme.md
+Switched to a new branch 'iss53'
+
+#shorthand for
+
+$ git branch iss53 
+$ git checkout iss5
+
+$ vim index.html 
+$ git commit -a -m 'added a new footer [issue 53]'
+
+git checkout master
+M       chptr1/chapter1_answers.txt
+M       chptr2/chapter2_answers.txt
+D       chptr2/libgit2
+M       chptr3/readme.md
+D       liyag_ipythonexercise_part1/readme.md
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+
+$git checkout -b hotfix
+M       chptr1/chapter1_answers.txt
+M       chptr2/chapter2_answers.txt
+D       chptr2/libgit2
+M       chptr3/readme.md
+D       liyag_ipythonexercise_part1/readme.md
+Switched to a new branch 'hotfix'
+$ vim index.html 
+$ git commit -a -m 'fixed the broken email address'
+[hotfix 1fb7853] fixed the broken email address 
+1 file changed, 2 insertions(+)
+
+$ git checkout iss53 Switched to branch "iss53" 
+$ vim index.html 
+$ git commit -a -m 'finished the new footer [issue 53]' 
+[iss53 ad82d7a] finished the new footer [issue 53] 
+1 file changed, 1 insertion(+
+
+$ git branch -d hotfix 
+Deleted branch hotfix (3a0874c)
+
+$ git checkout iss53 Switched to branch "iss53" 
+$ vim index.html 
+$ git commit -a -m 'finished the new footer [issue 53]' 
+[iss53 ad82d7a] finished the new footer [issue 53] 
+1 file changed, 1 insertion(+
+
+
+#basic mergin
+
+$ git checkout master
+M       chptr1/chapter1_answers.txt
+M       chptr2/chapter2_answers.txt
+D       chptr2/libgit2
+M       chptr3/readme.md
+D       liyag_ipythonexercise_part1/readme.md
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+
+$ git merge iss53
+Already up-to-date.
+
+$ git branch -d iss5
+
+#Basic Merge Conflicts
+
+$ git merge iss53 
+Auto-merging index.html 
+CONFLICT (content): Merge conflict in index.html 
+Automatic merge failed; fix conflicts and then commit the result.
+
+$ git status 
+On branch master 
+You have unmerged paths.  
+(fix conflicts and run "git commit")
+Unmerged paths:  (use "git add <file>..." to mark resolution)
+    both modified:      index.html
+no changes added to commit (use "git add" and/or "git commit -a")
+
+$ git mergetool
+This message is displayed because 'merge.tool' is not configured. See 'git mergetool --tool-help' or 'git help config' for more details. 'git mergetool' will now attempt to use one of the following tools: opendiff kdiff3 tkdiff xxdiff meld tortoisemerge gvimdiff diffuse diffmerge ecmerge p4merge araxis bc3 codecompare vimdiff emerge Merging: index.html
+Normal merge conflict for 'index.html':  {local}: modified file  {remote}: modified file Hit return to start merge resolution tool (opendiff):
+
+$ git status On branch master All conflicts fixed but you are still merging.  (use "git commit" to conclude merge)
+Changes to be committed:
+    modified:   index.html
+    Merge branch 'iss53'
+
+Conflicts:    index.html 
+# 
+# It looks like you may be committing a merge. 
+# If this is not correct, please remove the file 
+# .git/MERGE_HEAD # and try again.
+# Please enter the commit message for your changes. Lines starting 
+# with '#' will be ignored, and an empty message aborts the commit. 
+# On branch master 
+# All conflicts fixed but you are still merging. 
+# 
+# Changes to be committed: 
+# modified:   index.html 
+#
+
+#Branch Management
+$ git branch
+  hotfix
+  iss53
+* master
+  testing
+
+
+$ git branch -v
+   hotfix  69d0fe7 edit some answers
+  iss53   69d0fe7 edit some answers
+* master  69d0fe7 edit some answers
+  testing 69d0fe7 edit some answers
+
+$ git branch --merged
+  hotfix
+  iss53
+* master
+  testing
+
+$git branch --no-merged
+
+$ git branch -d testing
+error: The branch 'testing' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D testing'.
+
+#Pushing
+
+$ git push origin serverfix
+Counting objects: 24, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (15/15), done.
+Writing objects: 100% (24/24), 1.91 KiB | 0 bytes/s, done.
+Total 24 (delta 2), reused 0 (delta 0)
+To https://github.com/schacon/simplegit
+ * [new branch]      serverfix -> serverfix
+
+$ git fetch origin
+remote: Counting objects: 7, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 3 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From https://github.com/schacon/simplegit
+ * [new branch]      serverfix    -> origin/serverfix
+
+$ git checkout -b serverfix origin/serverfix
+Branch serverfix set up to track remote branch serverfix from origin.
+Switched to a new branch 'serverfix'
+
+#tracking branches
+
+$ git checkout --track origin/serverfix
+Branch serverfix set up to track remote branch serverfix from origin.
+Switched to a new branch 'serverfix'
+
+$ git checkout -b sf origin/serverfix
+Branch sf set up to track remote branch serverfix from origin.
+Switched to a new branch 'sf'
+
+$ git branch -u origin/serverfix
+Branch serverfix set up to track remote branch serverfix from origin.
+
+$ git branch -vv
+  iss53     7e424c3 [origin/iss53: ahead 2] forgot the brackets
+  master    1ae2a45 [origin/master] deploying index fix
+* serverfix f8674d9 [teamone/server-fix-good: ahead 3, behind 1] this should do it
+  testing   5ea463a trying something new
+
+$deleting remote branches
+$ git push origin --delete serverfix
+To https://github.com/schacon/simplegit
+ - [deleted]         serverfix
+
+#Rebasing
+git checkout experiment
+git rebase master
+First, rewinding head to replay your work on top of it...
+Applying: added staged command
+
+git checkout master
+git merge experiment
+
+git rebase --onto master server client
+
+git checkout master
+git merge client
+
+git rebase master server
+
+git checkout master
+git merge server
+
+git branch -d client
+git branch -d server
+
+
+
